@@ -13,6 +13,7 @@ const resultDisplay = document.querySelector('.result');
 const resultConditions = ['WIN', 'LOSE', 'DRAW'];
 const statisticCounters = document.querySelectorAll('.statCounter');
 const colors = ['#C84B31', '#4d6da1'];
+const displayType = window.navigator.maxTouchPoints;
 
 let userChoice;
 let computerChoice;
@@ -102,8 +103,6 @@ const getRandomOutColor = (e) => {
 }
 
 const checkDisaplyNonSensetive= () => {
-	let displayType = window.navigator.maxTouchPoints;
-
 	if (displayType === 0) {
 		buttons.forEach(el => el.addEventListener('mouseover', getRandomOverColor));
 		buttons.forEach(el => el.addEventListener('mouseout', getRandomOutColor));
@@ -111,8 +110,6 @@ const checkDisaplyNonSensetive= () => {
 }
 
 const checkDisaplySensetive= () => {
-	let displayType = window.navigator.maxTouchPoints;
-
 	if (displayType === 1) {
 		buttons.forEach(el => el.addEventListener('touchstart', getRandomOverColor));
 		buttons.forEach(el => el.addEventListener('touchend', getRandomOutColor));
@@ -128,8 +125,8 @@ const game = () => {
 		renderStatistics();
 	}));
 
-	setInterval(checkDisaplyNonSensetive, 1);
-	setInterval(checkDisaplySensetive, 1);
+	checkDisaplyNonSensetive();
+	checkDisaplySensetive();
 }
 
 game();
